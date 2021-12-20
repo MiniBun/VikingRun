@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637754320556919049
+      ticks: 637756251430104796
     m_Hash: 980436348
   m_LockFileStatus:
     m_FilePath: "D:/\u5BB6\u4F51/VikingRun/Packages/packages-lock.json"
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637754320650120229
+      ticks: 637756251430261038
     m_Hash: 1810897712
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
