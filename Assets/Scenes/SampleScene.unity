@@ -381,7 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   straightRoad: {fileID: 1787766856439510033, guid: cfdde286bf4d711419d774fc394bae84, type: 3}
   rightRoad: {fileID: 8608196433687031967, guid: ec0ffe35dfb5f2d4fa59ff2f71f2aa50, type: 3}
-  leftRoad: {fileID: 0}
+  leftRoad: {fileID: 5582395767110350221, guid: 1f12eb11c2646b04a87c583d9ea6b7c8, type: 3}
   target: {fileID: 0}
   isGenRoad: 0
   isRemove: 0
@@ -466,8 +466,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.4, z: -0.82}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.4, z: -0.8200002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

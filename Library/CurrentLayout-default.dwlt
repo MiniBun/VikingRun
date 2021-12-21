@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1280
     height: 637.3334
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 319
     height: 310
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -122,8 +122,8 @@ MonoBehaviour:
     y: 0
     width: 258
     height: 310
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -178,7 +178,7 @@ MonoBehaviour:
     y: 0
     width: 1280
     height: 637
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -395,21 +395,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Models/Environment
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 63
   m_LastFolders:
-  - Assets
+  - Assets/Models/Environment
   m_LastFoldersGridSize: 63
   m_LastProjectPath: "D:\\\u5BB6\u4F51\\VikingRun"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: 203f0000
-    m_LastClickedID: 16160
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 343f0000
+    m_LastClickedID: 16180
     m_ExpandedIDs: 000000001e3f0000203f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000ee48000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -490,7 +490,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 956}
     m_GridSize: 63
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -561,7 +561,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 48fbffff
+      m_ExpandedIDs: 9a83ffffb883ffff7ca2ffffc6dcffff2ee0ffff52fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -621,9 +621,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 26.893944, y: -20.615414, z: 115.83813}
+    m_Target: {x: 119.60344, y: 48.139206, z: 139.59421}
     speed: 2
-    m_Value: {x: 26.893944, y: -20.615414, z: 115.83813}
+    m_Value: {x: 119.60344, y: 48.139206, z: 139.59421}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -670,13 +670,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.3423436, y: 0.23782036, z: -0.089998774, w: -0.9045406}
+    m_Target: {x: -0.25859058, y: 0.09313922, z: -0.025048753, w: -0.96118665}
     speed: 2
-    m_Value: {x: -0.34233487, y: 0.23781429, z: -0.08999648, w: -0.90451753}
+    m_Value: {x: -0.258584, y: 0.09313684, z: -0.025048114, w: -0.96116215}
   m_Size:
-    m_Target: 57.47996
+    m_Target: 17.49578
     speed: 2
-    m_Value: 57.47996
+    m_Value: 17.49578
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -770,18 +770,18 @@ MonoBehaviour:
       y: 21
       width: 317
       height: 268
-    m_Scale: {x: 1.6159656, y: 1.6159656}
-    m_Translation: {x: 152.02116, y: 123.64039}
+    m_Scale: {x: 1.5604457, y: 1.5604457}
+    m_Translation: {x: 163.0871, y: 132.3557}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -94.0745
-      y: -76.51177
-      width: 196.16754
-      height: 165.84511
+      x: -104.51315
+      y: -84.81917
+      width: 203.1471
+      height: 171.7458
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 475.5, y: 433.5}

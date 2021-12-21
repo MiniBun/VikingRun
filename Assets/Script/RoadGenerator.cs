@@ -38,17 +38,38 @@ public class RoadGenerator : MonoBehaviour
         if (isGenRoad)
         {
             times++;
-            if (times % 10 != 0)
+            int i = Random.Range(0, 6); // 0~2 straight 3 hole 4 left 5 right
+            
+            if (times > 8 && i == 3)
             {
                 var t = Instantiate(straightRoad);
                 t.transform.position = roadTrace.transform.position;
                 t.transform.Rotate(0, angle, 0, Space.Self);
                 roads.Add(t);
-                roadTrace.transform.position += traceMove* 6;
+                roadTrace.transform.position += traceMove * 12;
                 isGenRoad = false;
                 isRemove = true;
+                times = 0;
             }
-            else // right
+            else if (times>8&&i==4)
+            {
+                angle = (angle - 90) % 360;
+                Vector3 temp = traceMove;
+                roadTrace.transform.position += traceMove * 3.85f;
+                traceMove.x = Mathf.Sin(angle * Mathf.Deg2Rad);
+                traceMove.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+                roadTrace.transform.position += traceMove * 0.7f;
+                var t = Instantiate(leftRoad);
+                t.transform.position = roadTrace.transform.position;
+                t.transform.Rotate(0, angle + 90, 0, Space.Self);
+                roads.Add(t);
+                roadTrace.transform.position += temp * 0.65f;
+                roadTrace.transform.position += traceMove * 9.75f;
+                isGenRoad = false;
+                isRemove = true;
+                times = 0;
+            }
+            else if (times > 8 && i == 5)
             {
                 angle = (angle + 90) % 360;
                 Vector3 temp = traceMove;
@@ -58,13 +79,25 @@ public class RoadGenerator : MonoBehaviour
                 roadTrace.transform.position += traceMove * 0.7f;
                 var t = Instantiate(rightRoad);
                 t.transform.position = roadTrace.transform.position;
-                t.transform.Rotate(0, angle-90, 0, Space.Self);
+                t.transform.Rotate(0, angle - 90, 0, Space.Self);
                 roads.Add(t);
                 roadTrace.transform.position += temp * 0.65f;
                 roadTrace.transform.position += traceMove * 9.85f;
                 isGenRoad = false;
                 isRemove = true;
+                times = 0;
             }
+            else
+            {
+                var t = Instantiate(straightRoad);
+                t.transform.position = roadTrace.transform.position;
+                t.transform.Rotate(0, angle, 0, Space.Self);
+                roads.Add(t);
+                roadTrace.transform.position += traceMove* 6;
+                isGenRoad = false;
+                isRemove = true;
+            }
+            
         }
         if (isRemove)
         {
