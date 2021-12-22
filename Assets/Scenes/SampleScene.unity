@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &299482926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299482927}
+  m_Layer: 0
+  m_Name: coinTrace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &299482927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299482926}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.62, z: -18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &695675499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400114, guid: c665b3a9b8769c04ebacd292bc9fbaba, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400114, guid: c665b3a9b8769c04ebacd292bc9fbaba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -271,7 +301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &814941934 stripped
 GameObject:
@@ -327,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingSpeed: 20
   maxJumpHeight: 5
-  maxJumpTime: 1
+  maxJumpTime: 1.5
   initialJumpVelocity: 0
   distance: 6
 --- !u!95 &814941939
@@ -379,14 +409,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43423ee95cb9b8438b9dd58badfe942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  straightRoad: {fileID: 1787766856439510033, guid: cfdde286bf4d711419d774fc394bae84, type: 3}
-  rightRoad: {fileID: 8608196433687031967, guid: ec0ffe35dfb5f2d4fa59ff2f71f2aa50, type: 3}
-  leftRoad: {fileID: 5582395767110350221, guid: 1f12eb11c2646b04a87c583d9ea6b7c8, type: 3}
+  straightRoad: {fileID: 3084003009084950155, guid: 68b9e7c1b64ff32498949b8019f528da, type: 3}
+  rightRoad: {fileID: 3002759721882788011, guid: ec0ffe35dfb5f2d4fa59ff2f71f2aa50, type: 3}
+  leftRoad: {fileID: 6278143351792679520, guid: 1f12eb11c2646b04a87c583d9ea6b7c8, type: 3}
   target: {fileID: 0}
+  coin: {fileID: 8490825034766131590, guid: fb8341b61ffb77647b02842af168000b, type: 3}
   isGenRoad: 0
   isRemove: 0
   roads: []
+  coins: []
   roadTrace: {fileID: 1006730226}
+  coinTrace: {fileID: 299482926}
   traceMove: {x: 0, y: 0, z: 0}
   times: 0
 --- !u!1 &963194225
@@ -467,11 +500,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.4, z: -0.8200002}
+  m_LocalPosition: {x: 0, y: 2.7800002, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 814941935}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -480,7 +513,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1aa76d478f6d894f95e7d1cdf76ecc3, type: 3}
   m_Name: 
@@ -514,7 +547,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612596010
 GameObject:
@@ -549,10 +582,13 @@ MonoBehaviour:
   rightRoad: {fileID: 0}
   leftRoad: {fileID: 0}
   target: {fileID: 0}
+  coin: {fileID: 0}
   isGenRoad: 0
   isRemove: 0
   roads: []
+  coins: []
   roadTrace: {fileID: 1006730226}
+  coinTrace: {fileID: 0}
   traceMove: {x: 0, y: 0, z: 0}
   times: 0
 --- !u!4 &1612596012
@@ -567,5 +603,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

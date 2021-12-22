@@ -24,6 +24,7 @@ public class VikingController : MonoBehaviour
     private float initialJumpVelocity;
     private bool isPlayerGrounded = true;
     private bool isJumping = false;
+    private bool turnMode = false;
     bool run;
     bool jump;
     [SerializeField]
@@ -63,21 +64,30 @@ public class VikingController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A)) // left
         {
-            run = true;
-            transform.Rotate(0, -90, 0, Space.Self);
-            angle -= 90;
-            angle %= 360;
-            move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
-            move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+            if (turnMode)
+            {
+                run = true;
+                transform.Rotate(0, -90, 0, Space.Self);
+                angle -= 90;
+                angle %= 360;
+                move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
+                move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+                turnMode = false;
+            }
         }
         if (Input.GetKeyDown(KeyCode.D)) // right
         {
-            run = true;
-            transform.Rotate(0, 90, 0, Space.Self);
-            angle += 90;
-            angle %= 360;
-            move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
-            move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+            if (turnMode)
+            {
+                run = true;
+                transform.Rotate(0, 90, 0, Space.Self);
+                angle += 90;
+                angle %= 360;
+                move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
+                move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+                turnMode = false;
+            }
+            
         }
         animator.SetBool("isRun", run);
         animator.SetBool("isJump", jump);
@@ -123,8 +133,13 @@ public class VikingController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
+        Debug.Log(other.transform.name);
+        TriggerSet triggerSet = other.GetComponent<TriggerSet>();
+        if (other.transform.name == "coin(Clone)" && !triggerSet.isCall)
+        {
+            triggerSet.isCall = true;
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -136,10 +151,15 @@ public class VikingController : MonoBehaviour
             triggerSet.isCall = true;
             roadGenerator.isGenRoad = true;
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
+        if (other.transform.name == "canTurnLeft" && !triggerSet.isCall)
+        {
+            triggerSet.isCall = true;
+            turnMode = true;
+        }
+        if (other.transform.name == "canTurnRight" && !triggerSet.isCall)
+        {
+            triggerSet.isCall = true;
+            turnMode = true;
+        }
     }
 }
