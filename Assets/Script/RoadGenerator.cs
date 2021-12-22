@@ -124,8 +124,8 @@ public class RoadGenerator : MonoBehaviour
                     coin1.transform.localPosition = Vector3.zero;
                     t.transform.Find(coin1Pos).transform.Rotate(0, angle, 0, Space.Self);
                     var coin2 = Instantiate(coin);
-                    coin2.transform.localPosition = Vector3.zero;
                     coin2.transform.parent = t.transform.Find(coin2Pos);
+                    coin2.transform.localPosition = Vector3.zero;
                     t.transform.Find(coin2Pos).transform.Rotate(0, angle, 0, Space.Self);
                     var coin3 = Instantiate(coin);
                     coin3.transform.parent = t.transform.Find(coin3Pos);

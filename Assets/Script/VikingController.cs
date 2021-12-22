@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VikingController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class VikingController : MonoBehaviour
     CharacterController controller;
     RoadGenerator roadGenerator;
     Vector3 move;
+    [SerializeField]
+    Text showScore;
+    int score = 0;
     // Gravity Variables
     private float gravityValue = -9.8f;
     private float groundedGravity = -0.05f;
@@ -40,6 +44,7 @@ public class VikingController : MonoBehaviour
         //controller = GetComponent<CharacterController>();
         setupJumpVariables();
         move = new Vector3(0, 0, 1).normalized;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -139,6 +144,8 @@ public class VikingController : MonoBehaviour
         {
             triggerSet.isCall = true;
             Destroy(other.gameObject);
+            score ++;
+            showScore.text = "Score : " + score.ToString();
         }
     }
 
