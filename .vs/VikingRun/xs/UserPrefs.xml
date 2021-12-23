@@ -10,7 +10,7 @@
           <Node name="VikingRun" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Script" expanded="True">
-                <Node name="RoadGenerator.cs" selected="True" />
+                <Node name="VikingController.cs" selected="True" />
               </Node>
             </Node>
           </Node>

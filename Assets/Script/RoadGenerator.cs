@@ -9,6 +9,7 @@ public class RoadGenerator : MonoBehaviour
     public GameObject leftRoad;
     public GameObject holeRoad;
     public GameObject coin;
+    public GameObject obstacle;
     public bool isGenRoad=false;
     public bool isRemove = false;
     public List<GameObject> roads;
@@ -42,7 +43,7 @@ public class RoadGenerator : MonoBehaviour
         if (isGenRoad)
         {
             times++;
-            int i = Random.Range(0, 6); // 0~2 straight 3 hole 4 left 5 right
+            int i = Random.Range(0, 7); // 0~2 straight 3 hole 4 left 5 right 6 obstacle
             
             if (times > 8 && i == 3) // hole
             {
@@ -87,6 +88,17 @@ public class RoadGenerator : MonoBehaviour
                 roads.Add(t);
                 roadTrace.transform.position += temp * 0.65f;
                 roadTrace.transform.position += traceMove * 9.85f;
+                isGenRoad = false;
+                isRemove = true;
+                times = 0;
+            }
+            else if(times > 8 && i == 6) // obstacle
+            {
+                var t = Instantiate(obstacle);
+                t.transform.position = roadTrace.transform.position;
+                t.transform.Rotate(0, angle, 0, Space.Self);
+                roads.Add(t);
+                roadTrace.transform.position += traceMove * 6;
                 isGenRoad = false;
                 isRemove = true;
                 times = 0;

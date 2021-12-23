@@ -14,7 +14,11 @@ public class VikingController : MonoBehaviour
     Vector3 leftRightMove;
     [SerializeField]
     Text showScore;
+    [SerializeField]
+    Text showTime;
     int score = 0;
+    int minute=0;
+    float second=0;
     // Gravity Variables
     private float gravityValue = -9.8f;
     private float groundedGravity = -0.05f;
@@ -48,13 +52,23 @@ public class VikingController : MonoBehaviour
         move = new Vector3(0, 0, 1).normalized;
         leftRightMove = new Vector3(1, 0, 0).normalized;
         score = 0;
+        minute = 0;
+        second = 0;
         showScore.text = "Score : " + score.ToString();
+        showTime.text = "Time : " + string.Format("{0:00}", minute) + " : " + string.Format("{0:00}", (int)second);
         unlockLR = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        second += Time.deltaTime;
+        if (second >= 60)
+        {
+            minute++;
+            second = 0;
+        }
+        showTime.text = "Time : " + string.Format("{0:00}", minute) + " : " + string.Format("{0:00}", (int)second);
         detectGrounded();
         handleGravity();
         if (isPlayerGrounded)
@@ -62,8 +76,10 @@ public class VikingController : MonoBehaviour
             run = true;
             jump = false;
         }
-        //transform.position += movingSpeed * Time.deltaTime * Vector3.forward;
-
+        if (transform.position.y <= -5f)
+        {
+            stopTheGame();
+        }
         controller.Move(move * movingSpeed * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Space)&& isPlayerGrounded)
         {
@@ -140,7 +156,10 @@ public class VikingController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.collider.CompareTag("obstacle"))
+        {
+            stopTheGame();
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -193,5 +212,14 @@ public class VikingController : MonoBehaviour
         {
             unlockLR = true;
         }
+    }
+    private void stopTheGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void reStartTheGame()
+    {
+        Time.timeScale = 1;
     }
 }
