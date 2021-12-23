@@ -7,7 +7,7 @@ public class RoadGenerator : MonoBehaviour
     public GameObject straightRoad;
     public GameObject rightRoad;
     public GameObject leftRoad;
-    public GameObject target;
+    public GameObject holeRoad;
     public GameObject coin;
     public bool isGenRoad=false;
     public bool isRemove = false;
@@ -44,9 +44,9 @@ public class RoadGenerator : MonoBehaviour
             times++;
             int i = Random.Range(0, 6); // 0~2 straight 3 hole 4 left 5 right
             
-            if (times > 8 && i == 3)
+            if (times > 8 && i == 3) // hole
             {
-                var t = Instantiate(straightRoad);
+                var t = Instantiate(holeRoad);
                 t.transform.position = roadTrace.transform.position;
                 t.transform.Rotate(0, angle, 0, Space.Self);
                 roads.Add(t);
@@ -55,7 +55,7 @@ public class RoadGenerator : MonoBehaviour
                 isRemove = true;
                 times = 0;
             }
-            else if (times>8&&i==4)
+            else if (times>8&&i==4) // left
             {
                 angle = (angle - 90) % 360;
                 Vector3 temp = traceMove;
@@ -73,7 +73,7 @@ public class RoadGenerator : MonoBehaviour
                 isRemove = true;
                 times = 0;
             }
-            else if (times > 8 && i == 5)
+            else if (times > 8 && i == 5) // right
             {
                 angle = (angle + 90) % 360;
                 Vector3 temp = traceMove;

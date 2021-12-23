@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e9ecfbd7f4ec0432ca86d89536bf7b1f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.56382364, g: 0.6656271, b: 0.8448814, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -358,7 +358,7 @@ MonoBehaviour:
   movingSpeed: 20
   showScore: {fileID: 1054047037}
   maxJumpHeight: 5
-  maxJumpTime: 0.6
+  maxJumpTime: 1
   initialJumpVelocity: 0
   distance: 6
 --- !u!95 &814941939
@@ -397,7 +397,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.22, z: 0}
 --- !u!114 &814941941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
   straightRoad: {fileID: 7171005731916110742, guid: 68b9e7c1b64ff32498949b8019f528da, type: 3}
   rightRoad: {fileID: 3981486493255053779, guid: ec0ffe35dfb5f2d4fa59ff2f71f2aa50, type: 3}
   leftRoad: {fileID: 5544012861255070538, guid: 1f12eb11c2646b04a87c583d9ea6b7c8, type: 3}
-  target: {fileID: 0}
+  holeRoad: {fileID: 883770147442156158, guid: 69343ffb38ac3422ebfbefe8e1e54f32, type: 3}
   coin: {fileID: 8490825034766131590, guid: fb8341b61ffb77647b02842af168000b, type: 3}
   isGenRoad: 0
   isRemove: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
   straightRoad: {fileID: 100000, guid: e5b2ff19c6775f644ae3b902cac71da1, type: 3}
   rightRoad: {fileID: 0}
   leftRoad: {fileID: 0}
-  target: {fileID: 0}
+  holeRoad: {fileID: 0}
   coin: {fileID: 0}
   isGenRoad: 0
   isRemove: 0

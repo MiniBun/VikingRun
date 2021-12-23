@@ -250,7 +250,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12.212322, y: 10.994659, z: 0}
+  m_Size: {x: 15.3654, y: 10.994659, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5525527641215404310
 MonoBehaviour:
@@ -259,6 +259,64 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3912060661416763039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d997d5d1875b8f546af604e01fc9d930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCall: 0
+--- !u!1 &4333039486201234836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7864108132108484231}
+  - component: {fileID: 395145156656860147}
+  - component: {fileID: 6017466499717409559}
+  m_Layer: 0
+  m_Name: enemyJump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7864108132108484231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333039486201234836}
+  m_LocalRotation: {x: -0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.72, y: 5.16, z: -4.36}
+  m_LocalScale: {x: 0.6666667, y: 1, z: 0}
+  m_Children: []
+  m_Father: {fileID: 627360134171695951}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &395145156656860147
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333039486201234836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.3654, y: 10.994659, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6017466499717409559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333039486201234836}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d997d5d1875b8f546af604e01fc9d930, type: 3}
@@ -768,6 +826,7 @@ Transform:
   - {fileID: 7409121798731967471}
   - {fileID: 5200270298029720177}
   - {fileID: 3240344040479005784}
+  - {fileID: 7864108132108484231}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
