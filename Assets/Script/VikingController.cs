@@ -11,6 +11,7 @@ public class VikingController : MonoBehaviour
     CharacterController controller;
     RoadGenerator roadGenerator;
     Vector3 move;
+    Vector3 leftRightMove;
     [SerializeField]
     Text showScore;
     int score = 0;
@@ -29,6 +30,7 @@ public class VikingController : MonoBehaviour
     private bool isPlayerGrounded = true;
     private bool isJumping = false;
     private bool turnMode = false;
+    private bool unlockLR = false;
     bool run;
     bool jump;
     [SerializeField]
@@ -44,7 +46,10 @@ public class VikingController : MonoBehaviour
         //controller = GetComponent<CharacterController>();
         setupJumpVariables();
         move = new Vector3(0, 0, 1).normalized;
+        leftRightMove = new Vector3(1, 0, 0).normalized;
         score = 0;
+        showScore.text = "Score : " + score.ToString();
+        unlockLR = false;
     }
 
     // Update is called once per frame
@@ -67,7 +72,7 @@ public class VikingController : MonoBehaviour
             jump = true;
             run = false;
         }
-        if (Input.GetKeyDown(KeyCode.A)) // left
+        if (Input.GetKey(KeyCode.A) && !isJumping) // left
         {
             if (turnMode)
             {
@@ -77,10 +82,16 @@ public class VikingController : MonoBehaviour
                 angle %= 360;
                 move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
                 move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+                leftRightMove.x = Mathf.Cos(angle * Mathf.Deg2Rad);
+                leftRightMove.z = -Mathf.Sin(angle * Mathf.Deg2Rad);
                 turnMode = false;
             }
+            else if (!unlockLR)
+            {
+                controller.Move(leftRightMove * (-10) * Time.deltaTime);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.D)) // right
+        if (Input.GetKey(KeyCode.D)&&!isJumping) // right
         {
             if (turnMode)
             {
@@ -90,7 +101,13 @@ public class VikingController : MonoBehaviour
                 angle %= 360;
                 move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
                 move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+                leftRightMove.x= Mathf.Cos(angle * Mathf.Deg2Rad);
+                leftRightMove.z= -Mathf.Sin(angle * Mathf.Deg2Rad);
                 turnMode = false;
+            }
+            else if(!unlockLR)
+            {
+                controller.Move(leftRightMove * 10 * Time.deltaTime);
             }
             
         }
@@ -167,6 +184,14 @@ public class VikingController : MonoBehaviour
         {
             triggerSet.isCall = true;
             turnMode = true;
+        }
+        if(other.transform.name== "unlockLeftRight" && !triggerSet.isCall)
+        {
+            unlockLR = false;
+        }
+        if(other.transform.name == "lockLeftRight" && !triggerSet.isCall)
+        {
+            unlockLR = true;
         }
     }
 }
