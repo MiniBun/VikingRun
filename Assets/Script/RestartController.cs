@@ -8,7 +8,7 @@ public class RestartController : MonoBehaviour,IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(1);
     }
 
     // Start is called before the first frame update

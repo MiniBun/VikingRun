@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class VikingController : MonoBehaviour
 {
-    public float movingSpeed = 20f;
-    int roadnum = 1;
+    float movingSpeed = 15f;
     Animator animator;
     CharacterController controller;
     RoadGenerator roadGenerator;
     Vector3 move;
     Vector3 leftRightMove;
+    
     [SerializeField]
     Text showScore;
     [SerializeField]
@@ -24,21 +24,21 @@ public class VikingController : MonoBehaviour
     int minute=0;
     float second=0;
     // Gravity Variables
-    private float gravityValue = -9.8f;
-    private float groundedGravity = -0.05f;
+    [SerializeField] private float gravityValue;
+    [SerializeField] private float groundedGravity=-.5f;
     private float angle = 0;
     public GameObject showGameOver;
     // Jumping Variables
+    [SerializeField] private float maxJumpHeight = 5f;
+    [SerializeField] private float maxJumpTime = 5f;
+    [SerializeField] private float initialJumpVelocity;
     [SerializeField]
-    private float maxJumpHeight = 100f;
+    bool isPlayerGrounded = true;
     [SerializeField]
-    private float maxJumpTime = 100f;
-    [SerializeField]
-    private float initialJumpVelocity;
-    private bool isPlayerGrounded = true;
-    private bool isJumping = false;
+    bool isJumping = false;
     private bool turnMode = false;
     private bool unlockLR = false;
+    private float timeScale;
     bool run;
     bool jump;
     bool die;
@@ -50,12 +50,20 @@ public class VikingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //Time.timeScale = 1;
+        //Time.fixedDeltaTime = 60;
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         roadGenerator = GetComponent<RoadGenerator>();
+        maxJumpHeight = 5f;
+        maxJumpTime = 0.5f;
         //controller = GetComponent<CharacterController>();
-        setupJumpVariables();
+        //setupJumpVariables();
+        float timeToApex = maxJumpTime / 2 / Time.deltaTime;
+        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+        gravityValue = -initialJumpVelocity / timeToApex;
+        groundedGravity = -0.05f;
         move = new Vector3(0, 0, 1).normalized;
         leftRightMove = new Vector3(1, 0, 0).normalized;
         score = 0;
@@ -66,87 +74,98 @@ public class VikingController : MonoBehaviour
         unlockLR = false;
         stopingGame = false;
         showGameOver.SetActive(false);
+        isPlayerGrounded = true;
+        isJumping = false;
+        detectGrounded();
+        handleGravity();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        second += Time.deltaTime;
-        if (second >= 60)
+        if (!stopingGame)
         {
-            minute++;
-            second = 0;
-        }
-        showTime.text = "Time : " + string.Format("{0:00}", minute) + " : " + string.Format("{0:00}", (int)second);
-        detectGrounded();
-        handleGravity();
-        if (isPlayerGrounded)
-        {
-            run = true;
-            jump = false;
-        }
-        if (transform.position.y <= -5f)
-        {
-            stopTheGame();
-        }
-        controller.Move(move * movingSpeed * Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.Space)&& isPlayerGrounded)
-        {
-            jumpMovement.y = initialJumpVelocity;
-            isJumping = true;
-            jump = true;
-            run = false;
-        }
-        if (Input.GetKey(KeyCode.A) && !isJumping) // left
-        {
-            if (turnMode)
+
+            second += Time.deltaTime;
+            if (second >= 60)
+            {
+                minute++;
+                second = 0;
+            }
+            showTime.text = "Time : " + string.Format("{0:00}", minute) + " : " + string.Format("{0:00}", (int)second);
+            detectGrounded();
+            handleGravity();
+            if (isPlayerGrounded)
             {
                 run = true;
-                transform.Rotate(0, -90, 0, Space.Self);
-                angle -= 90;
-                angle %= 360;
-                move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
-                move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
-                leftRightMove.x = Mathf.Cos(angle * Mathf.Deg2Rad);
-                leftRightMove.z = -Mathf.Sin(angle * Mathf.Deg2Rad);
-                turnMode = false;
+                jump = false;
             }
-            else if (!unlockLR)
+            if (transform.position.y <= -2f)
             {
-                controller.Move(leftRightMove * (-10) * Time.deltaTime);
+                stopingGame = true;
+                stopTheGame();
             }
+            controller.Move(move * movingSpeed * Time.deltaTime);
+            if (Input.GetKeyDown(KeyCode.Space) && isPlayerGrounded)
+            {
+                jumpMovement.y = initialJumpVelocity;
+                isPlayerGrounded = false;
+                isJumping = true;
+                jump = true;
+                run = false;
+            }
+            if (Input.GetKey(KeyCode.A) && !isJumping) // left
+            {
+                if (turnMode)
+                {
+                    run = true;
+                    transform.Rotate(0, -90, 0, Space.Self);
+                    angle -= 90;
+                    angle %= 360;
+                    move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
+                    move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+                    leftRightMove.x = Mathf.Cos(angle * Mathf.Deg2Rad);
+                    leftRightMove.z = -Mathf.Sin(angle * Mathf.Deg2Rad);
+                    turnMode = false;
+                }
+                else if (!unlockLR)
+                {
+                    controller.Move(leftRightMove * (-10) * Time.deltaTime);
+                }
+            }
+            if (Input.GetKey(KeyCode.D) && !isJumping) // right
+            {
+                if (turnMode)
+                {
+                    run = true;
+                    transform.Rotate(0, 90, 0, Space.Self);
+                    angle += 90;
+                    angle %= 360;
+                    move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
+                    move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
+                    leftRightMove.x = Mathf.Cos(angle * Mathf.Deg2Rad);
+                    leftRightMove.z = -Mathf.Sin(angle * Mathf.Deg2Rad);
+                    turnMode = false;
+                }
+                else if (!unlockLR)
+                {
+                    controller.Move(leftRightMove * 10 * Time.deltaTime);
+                }
+
+            }
+            animator.SetBool("isRun", run);
+            animator.SetBool("isJump", jump);
+            controller.Move(jumpMovement);
         }
-        if (Input.GetKey(KeyCode.D)&&!isJumping) // right
-        {
-            if (turnMode)
-            {
-                run = true;
-                transform.Rotate(0, 90, 0, Space.Self);
-                angle += 90;
-                angle %= 360;
-                move.x = Mathf.Sin(angle * Mathf.Deg2Rad);
-                move.z = Mathf.Cos(angle * Mathf.Deg2Rad);
-                leftRightMove.x= Mathf.Cos(angle * Mathf.Deg2Rad);
-                leftRightMove.z= -Mathf.Sin(angle * Mathf.Deg2Rad);
-                turnMode = false;
-            }
-            else if(!unlockLR)
-            {
-                controller.Move(leftRightMove * 10 * Time.deltaTime);
-            }
-            
-        }
-        animator.SetBool("isRun", run);
-        animator.SetBool("isJump", jump);
-        controller.Move(jumpMovement);
     }
 
     void setupJumpVariables()
     {
         float timeToApex = maxJumpTime / 2 / Time.deltaTime;
-
         initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
         gravityValue = -initialJumpVelocity / timeToApex;
+        groundedGravity = -0.05f;
     }
 
     void detectGrounded()
@@ -167,8 +186,10 @@ public class VikingController : MonoBehaviour
     {
         if (collision.collider.CompareTag("obstacle"))
         {
+            stopingGame = true;
             stopTheGame();
         }
+        
     }
 
     private void OnCollisionStay(Collision collision)
@@ -179,6 +200,7 @@ public class VikingController : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         Debug.Log(collision.transform.name+" Exit");
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -224,7 +246,7 @@ public class VikingController : MonoBehaviour
     }
     private void stopTheGame()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         showScore.enabled = false;
         showTime.enabled = false;
         showGameOver.SetActive(true);

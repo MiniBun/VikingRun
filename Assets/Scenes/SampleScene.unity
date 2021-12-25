@@ -569,15 +569,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b154a64eaf85e4746887832dbd53add4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingSpeed: 15
   showScore: {fileID: 1054047037}
   showTime: {fileID: 1694509927}
   gameOverScore: {fileID: 421411921}
   gameOverTime: {fileID: 1550047929}
   showGameOver: {fileID: 1776549968}
-  maxJumpHeight: 5
-  maxJumpTime: 1.5
-  initialJumpVelocity: 0
+  isPlayerGrounded: 1
+  isJumping: 0
   distance: 6
 --- !u!95 &814941939
 Animator:
@@ -614,7 +612,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.22, z: 0}
 --- !u!114 &814941941
 MonoBehaviour:
