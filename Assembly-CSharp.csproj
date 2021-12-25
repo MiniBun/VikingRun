@@ -55,9 +55,12 @@
   <ItemGroup>
     <Compile Include="Assets/Script/RoadGenerator.cs" />
     <Compile Include="Assets/Script/CameraMove.cs" />
+    <Compile Include="Assets/Script/EnemyController.cs" />
     <Compile Include="Assets/Script/VikingController.cs" />
     <Compile Include="Assets/Script/TriggerSet.cs" />
-    <Compile Include="Assets/Script/EnemyController.cs" />
+    <Compile Include="Assets/Script/SceneSwitcher.cs" />
+    <Compile Include="Assets/Script/ExitGame.cs" />
+    <Compile Include="Assets/Script/RestartController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/Fonts/OFL.txt" />

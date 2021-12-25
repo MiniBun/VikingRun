@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class VikingController : MonoBehaviour
 {
-    public float movingSpeed = 15f;
+    public float movingSpeed = 20f;
     int roadnum = 1;
     Animator animator;
     CharacterController controller;
@@ -16,6 +16,10 @@ public class VikingController : MonoBehaviour
     Text showScore;
     [SerializeField]
     Text showTime;
+    [SerializeField]
+    Text gameOverScore;
+    [SerializeField]
+    Text gameOverTime;
     int score = 0;
     int minute=0;
     float second=0;
@@ -23,12 +27,12 @@ public class VikingController : MonoBehaviour
     private float gravityValue = -9.8f;
     private float groundedGravity = -0.05f;
     private float angle = 0;
-
+    public GameObject showGameOver;
     // Jumping Variables
     [SerializeField]
-    private float maxJumpHeight = 5f;
+    private float maxJumpHeight = 100f;
     [SerializeField]
-    private float maxJumpTime = 1f;
+    private float maxJumpTime = 100f;
     [SerializeField]
     private float initialJumpVelocity;
     private bool isPlayerGrounded = true;
@@ -37,6 +41,8 @@ public class VikingController : MonoBehaviour
     private bool unlockLR = false;
     bool run;
     bool jump;
+    bool die;
+    bool stopingGame = false;
     [SerializeField]
     private float distance=6;
     Vector3 jumpMovement;
@@ -44,6 +50,7 @@ public class VikingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Time.timeScale = 1;
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         roadGenerator = GetComponent<RoadGenerator>();
@@ -57,6 +64,8 @@ public class VikingController : MonoBehaviour
         showScore.text = "Score : " + score.ToString();
         showTime.text = "Time : " + string.Format("{0:00}", minute) + " : " + string.Format("{0:00}", (int)second);
         unlockLR = false;
+        stopingGame = false;
+        showGameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -216,6 +225,11 @@ public class VikingController : MonoBehaviour
     private void stopTheGame()
     {
         Time.timeScale = 0;
+        showScore.enabled = false;
+        showTime.enabled = false;
+        showGameOver.SetActive(true);
+        gameOverScore.text = "Score : " + score.ToString();
+        gameOverTime.text = "Time : " + string.Format("{0:00}", minute) + " : " + string.Format("{0:00}", (int)second);
     }
 
     private void reStartTheGame()
