@@ -27,7 +27,7 @@ public class RoadGenerator : MonoBehaviour
     {
         isGenRoad = false;
         traceMove = new Vector3(0, 0, 1);
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 16; i++)
         {
             var t = Instantiate(straightRoad);
             t.transform.position = roadTrace.transform.position;
@@ -53,7 +53,6 @@ public class RoadGenerator : MonoBehaviour
                 roads.Add(t);
                 roadTrace.transform.position += traceMove * 12;
                 isGenRoad = false;
-                isRemove = true;
                 times = 0;
             }
             else if (times>8&&i==4) // left
@@ -71,7 +70,6 @@ public class RoadGenerator : MonoBehaviour
                 roadTrace.transform.position += temp * 0.65f;
                 roadTrace.transform.position += traceMove * 9.75f;
                 isGenRoad = false;
-                isRemove = true;
                 times = 0;
             }
             else if (times > 8 && i == 5) // right
@@ -89,7 +87,6 @@ public class RoadGenerator : MonoBehaviour
                 roadTrace.transform.position += temp * 0.65f;
                 roadTrace.transform.position += traceMove * 9.85f;
                 isGenRoad = false;
-                isRemove = true;
                 times = 0;
             }
             else if(times > 8 && i == 6) // obstacle
@@ -100,7 +97,6 @@ public class RoadGenerator : MonoBehaviour
                 roads.Add(t);
                 roadTrace.transform.position += traceMove * 6;
                 isGenRoad = false;
-                isRemove = true;
                 times = 0;
             }
             else
@@ -146,7 +142,6 @@ public class RoadGenerator : MonoBehaviour
                 }
                 roads.Add(t);
                 isGenRoad = false;
-                isRemove = true;
             }
         }
         if (isRemove)

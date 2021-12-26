@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8134834564674045340}
   m_Layer: 0
   m_Name: enemyTurnLeft
-  m_TagString: Untagged
+  m_TagString: enemyTurnLeft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319659588802192682}
   m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.956667, y: 1.04, z: 0.25999993}
+  m_LocalPosition: {x: -2.956667, y: 1.04, z: 1.68}
   m_LocalScale: {x: 0.6666667, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 181122071350545625}

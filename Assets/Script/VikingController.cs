@@ -5,36 +5,32 @@ using UnityEngine.UI;
 
 public class VikingController : MonoBehaviour
 {
-    float movingSpeed = 15f;
+    float movingSpeed = 20f;
     Animator animator;
     CharacterController controller;
     RoadGenerator roadGenerator;
-    Vector3 move;
+    public Vector3 move;
     Vector3 leftRightMove;
     
-    [SerializeField]
-    Text showScore;
-    [SerializeField]
-    Text showTime;
-    [SerializeField]
-    Text gameOverScore;
-    [SerializeField]
-    Text gameOverTime;
+    [SerializeField] Text showScore;
+    [SerializeField] Text showTime;
+    [SerializeField] Text gameOverScore;
+    [SerializeField] Text gameOverTime;
+    [SerializeField] Text tip;
+    public GameObject menuButton;
     int score = 0;
     int minute=0;
     float second=0;
     // Gravity Variables
-    [SerializeField] private float gravityValue;
+    [SerializeField] private float gravityValue= -0.04f;
     [SerializeField] private float groundedGravity=-.5f;
     private float angle = 0;
     public GameObject showGameOver;
     // Jumping Variables
-    [SerializeField] private float maxJumpHeight = 5f;
-    [SerializeField] private float maxJumpTime = 5f;
-    [SerializeField] private float initialJumpVelocity;
-    [SerializeField]
+    [SerializeField] private float maxJumpHeight;
+    [SerializeField] private float maxJumpTime;
+    [SerializeField] private float initialJumpVelocity= 0.6f;
     bool isPlayerGrounded = true;
-    [SerializeField]
     bool isJumping = false;
     private bool turnMode = false;
     private bool unlockLR = false;
@@ -50,8 +46,7 @@ public class VikingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        //Time.timeScale = 1;
+        Time.timeScale = 1;
         //Time.fixedDeltaTime = 60;
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -60,10 +55,10 @@ public class VikingController : MonoBehaviour
         maxJumpTime = 0.5f;
         //controller = GetComponent<CharacterController>();
         //setupJumpVariables();
-        float timeToApex = maxJumpTime / 2 / Time.deltaTime;
-        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
-        gravityValue = -initialJumpVelocity / timeToApex;
-        groundedGravity = -0.05f;
+        //float timeToApex = maxJumpTime / 2 /Time.deltaTime;
+        //initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+        //gravityValue = -initialJumpVelocity / timeToApex;
+        
         move = new Vector3(0, 0, 1).normalized;
         leftRightMove = new Vector3(1, 0, 0).normalized;
         score = 0;
@@ -72,7 +67,7 @@ public class VikingController : MonoBehaviour
         showScore.text = "Score : " + score.ToString();
         showTime.text = "Time : " + string.Format("{0:00}", minute) + " : " + string.Format("{0:00}", (int)second);
         unlockLR = false;
-        stopingGame = false;
+        stopingGame = true;
         showGameOver.SetActive(false);
         isPlayerGrounded = true;
         isJumping = false;
@@ -84,9 +79,13 @@ public class VikingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stopingGame && Input.GetKeyDown(KeyCode.Space))
+        {
+            stopingGame = false;
+            tip.enabled = false;
+        }
         if (!stopingGame)
         {
-
             second += Time.deltaTime;
             if (second >= 60)
             {
@@ -189,18 +188,30 @@ public class VikingController : MonoBehaviour
             stopingGame = true;
             stopTheGame();
         }
-        
+        if (collision.gameObject.name=="spider")
+        {
+            stopingGame = true;
+            stopTheGame();
+        }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        
+        if (collision.gameObject.name == "spider")
+        {
+            stopingGame = true;
+            stopTheGame();
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
         Debug.Log(collision.transform.name+" Exit");
-        
+        if (collision.gameObject.name == "spider")
+        {
+            stopingGame = true;
+            stopTheGame();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -246,7 +257,8 @@ public class VikingController : MonoBehaviour
     }
     private void stopTheGame()
     {
-        //Time.timeScale = 0;
+        Time.timeScale = 0;
+        menuButton.SetActive(false);
         showScore.enabled = false;
         showTime.enabled = false;
         showGameOver.SetActive(true);
