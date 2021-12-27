@@ -3,6 +3,10 @@
  Develop in Windows10 and MacBook  
  Using Unity and Visual Studio
  
+ ### About the game
+ This game is a run endless game like a simple version of temple run  
+ A player chased by an enemy avoid all the obstacle and eat the coin as much as possible before caught by enemy  
+ 
  ### How to play the game
  Execute the program and click the **START Button** to play  
  In the beginning, the game is stop, need to press **Space** to start  
