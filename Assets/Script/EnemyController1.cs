@@ -10,11 +10,13 @@ public class EnemyController1 : MonoBehaviour
     CharacterController controller;
     RoadGenerator roadGenerator;
     VikingController vikingController;
+    AudioSource audioSource;
     Vector3 move;
     // Gravity Variables
     [SerializeField] private float gravityValue = -0.04f;
     [SerializeField] private float groundedGravity = -0.5f;
     [SerializeField] private float initialJumpVelocity = 1f;
+    public AudioClip growl;
     private float angle = 0;
     [SerializeField] bool isPlayerGrounded = true;
     bool isJumping = false;
@@ -28,7 +30,7 @@ public class EnemyController1 : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-
+        audioSource = GetComponent<AudioSource>();
         g = GameObject.Find("vikingPlayer");
         roadGenerator = g.GetComponent<RoadGenerator>();
         vikingController = g.GetComponent<VikingController>();
@@ -66,6 +68,7 @@ public class EnemyController1 : MonoBehaviour
         TriggerSet triggerSet = other.GetComponent<TriggerSet>();
         if (other.gameObject.CompareTag("enemyJump") && !triggerSet.isCall)
         {
+            audioSource.PlayOneShot(growl);
             triggerSet.isCall = true;
             jumpMovement.y = initialJumpVelocity;
             isPlayerGrounded = false;
@@ -79,6 +82,7 @@ public class EnemyController1 : MonoBehaviour
         TriggerSet triggerSet = other.GetComponent<TriggerSet>();
         if (other.gameObject.CompareTag("enemyTurnRight") && !triggerSet.isCall)
         {
+            audioSource.PlayOneShot(growl);
             triggerSet.isCall = true;
             run = true;
             transform.Rotate(0, 90, 0, Space.Self);
@@ -89,6 +93,7 @@ public class EnemyController1 : MonoBehaviour
         }
         if (other.gameObject.CompareTag("enemyTurnLeft") && !triggerSet.isCall)
         {
+            audioSource.PlayOneShot(growl);
             triggerSet.isCall = true;
             run = true;
             transform.Rotate(0, -90, 0, Space.Self);

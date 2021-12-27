@@ -9,6 +9,8 @@ public class VikingController : MonoBehaviour
     Animator animator;
     CharacterController controller;
     RoadGenerator roadGenerator;
+    AudioSource audioSource;
+    public AudioClip getCoin, loseGame,jumpSound;
     public Vector3 move;
     Vector3 leftRightMove;
     
@@ -51,6 +53,7 @@ public class VikingController : MonoBehaviour
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         roadGenerator = GetComponent<RoadGenerator>();
+        audioSource = GetComponent<AudioSource>();
         maxJumpHeight = 5f;
         maxJumpTime = 0.5f;
         //controller = GetComponent<CharacterController>();
@@ -108,6 +111,7 @@ public class VikingController : MonoBehaviour
             controller.Move(move * movingSpeed * Time.deltaTime);
             if (Input.GetKeyDown(KeyCode.Space) && isPlayerGrounded)
             {
+                audioSource.PlayOneShot(jumpSound);
                 jumpMovement.y = initialJumpVelocity;
                 isPlayerGrounded = false;
                 isJumping = true;
@@ -220,6 +224,7 @@ public class VikingController : MonoBehaviour
         TriggerSet triggerSet = other.GetComponent<TriggerSet>();
         if (other.transform.name == "coin(Clone)" && !triggerSet.isCall)
         {
+            audioSource.PlayOneShot(getCoin);
             triggerSet.isCall = true;
             Destroy(other.gameObject);
             score ++;
@@ -257,6 +262,7 @@ public class VikingController : MonoBehaviour
     }
     private void stopTheGame()
     {
+        audioSource.PlayOneShot(loseGame);
         Time.timeScale = 0;
         menuButton.SetActive(false);
         showScore.enabled = false;

@@ -2,12 +2,14 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CameraMove
+    - EnemyController1
     - ExitGame
     - RestartController
     - RoadGenerator
     - SceneSwitcher
     - TriggerSet
     - VikingController
+    - showMenu
     Unity.CollabProxy.Editor.dll:
     - Unity.Cloud.Collaborate.UserInterface.CollaborateWindow
     Unity.Rider.Editor.dll:
@@ -25,7 +27,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/MainMenu.unity:
+    Assets/Scenes/HowToPlay.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -49,19 +51,76 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1486}
     - Class: 114
+      Script: {instanceID: 2006}
+    - Class: 114
+      Script: {instanceID: 2294}
+    - Class: 114
+      Script: {instanceID: 2406}
+    - Class: 114
+      Script: {instanceID: 2526}
+    - Class: 114
+      Script: {instanceID: 2574}
+    - Class: 114
+      Script: {instanceID: 2842}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/MainMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1442}
+    - Class: 114
+      Script: {instanceID: 1486}
+    - Class: 114
       Script: {instanceID: 1638}
     - Class: 114
       Script: {instanceID: 2006}
     - Class: 114
-      Script: {instanceID: 2292}
+      Script: {instanceID: 2294}
     - Class: 114
-      Script: {instanceID: 2404}
+      Script: {instanceID: 2406}
     - Class: 114
-      Script: {instanceID: 2524}
+      Script: {instanceID: 2526}
     - Class: 114
-      Script: {instanceID: 2572}
+      Script: {instanceID: 2574}
     - Class: 114
-      Script: {instanceID: 2840}
+      Script: {instanceID: 2842}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -107,6 +166,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -128,21 +193,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2006}
     - Class: 114
-      Script: {instanceID: 2292}
+      Script: {instanceID: 2096}
     - Class: 114
-      Script: {instanceID: 2404}
+      Script: {instanceID: 2294}
     - Class: 114
-      Script: {instanceID: 2524}
+      Script: {instanceID: 2406}
     - Class: 114
-      Script: {instanceID: 2572}
+      Script: {instanceID: 2526}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2574}
     - Class: 114
-      Script: {instanceID: 2840}
+      Script: {instanceID: 2644}
     - Class: 114
-      Script: {instanceID: 4020}
+      Script: {instanceID: 2842}
     - Class: 114
-      Script: {instanceID: 4464}
+      Script: {instanceID: 3104}
+    - Class: 114
+      Script: {instanceID: 4024}
+    - Class: 114
+      Script: {instanceID: 4468}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -164,6 +233,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -280,6 +351,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner
     className: PlaymodeTestsController
+  - hash:
+      serializedVersion: 2
+      Hash: 068d7015c2ca02ea4d4d4c9f4d280d6b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: showMenu
   - hash:
       serializedVersion: 2
       Hash: c1d728126ff1918728036c59106d32b2
@@ -450,6 +527,12 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
+      Hash: 5dff7dd3f94d59031a5db2375a8b3bf5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyController1
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -588,7 +671,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: e92ad93c4ae694eda4b3b31c39aecb4f
+      Hash: 0f59e602367e0ea1f739252ad732216f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: VikingController
@@ -638,4 +721,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: "D:/\u5BB6\u4F51/VikingRun/Build/2112261v1/VikingRun.exe"
+  - Assets/Scenes/HowToPlay.unity
+  playerPath: "D:/\u5BB6\u4F51/VikingRun/Build/211227v1/VikingRun.exe"
