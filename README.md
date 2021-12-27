@@ -20,7 +20,7 @@
  You can choose to play again or return to main menu  
  Note : A and D will **automatically** judge road side or turn  
  Tips : Turn early will increse the distance of player and enemy, but too early will lead tpo blank space  
- On the contrary, turn late will shorten the distance of player and enemy!
+ On the contrary, turn late will shorten the distance of player and enemy!  
  During the game, you can **click menu** to restart or return to main menu
  
  ### Bonus
