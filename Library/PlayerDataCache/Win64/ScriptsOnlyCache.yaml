@@ -97,8 +97,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -722,4 +720,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/SampleScene.unity
   - Assets/Scenes/HowToPlay.unity
-  playerPath: "D:/\u5BB6\u4F51/VikingRun/Build/211227v1/VikingRun.exe"
+  playerPath: "D:/\u5BB6\u4F51/VikingRun/Build/211227/VikingRun.exe"

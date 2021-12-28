@@ -76,13 +76,13 @@ public class VikingController : MonoBehaviour
         isJumping = false;
         detectGrounded();
         handleGravity();
-
+        die = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stopingGame && Input.GetKeyDown(KeyCode.Space))
+        if (stopingGame && Input.GetKeyDown(KeyCode.Space)&&!die)
         {
             stopingGame = false;
             tip.enabled = false;
@@ -264,6 +264,8 @@ public class VikingController : MonoBehaviour
     {
         audioSource.PlayOneShot(loseGame);
         Time.timeScale = 0;
+        die = true;
+        stopingGame = true;
         menuButton.SetActive(false);
         showScore.enabled = false;
         showTime.enabled = false;
